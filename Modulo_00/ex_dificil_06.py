@@ -5,9 +5,9 @@ import numpy as np
 def todas_as_rodadas(rodadas, jogadores):
     texto = ''
     if rodadas < 1:
-        texto += str('É necessario ter pelo menos 1 rodada para o jogo acontecer!')
+        texto += str('É necessario ter pelo menos uma rodada para o jogo acontecer!')
     elif jogadores < 2:
-        texto += str('É necessario ter pelo menos 2 jogares competindo para o jogo acontecer!')
+        texto += str('É necessario ter pelo menos dois jogares competindo para o jogo acontecer!')
 
     else:
         for turno in range(rodadas):
