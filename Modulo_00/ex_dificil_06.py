@@ -5,9 +5,9 @@ import numpy as np
 def todas_as_rodadas(rodadas, jogadores):
     texto = ''
     if rodadas < 1:
-        texto += str('É necessario ter pelo menos uma rodada para o jogo acontecer!')
+        texto += 'É necessario ter pelo menos uma rodada para o jogo acontecer!'
     elif jogadores < 2:
-        texto += str('É necessario ter pelo menos dois jogares competindo para o jogo acontecer!')
+        texto += 'É necessario ter pelo menos dois jogares competindo para o jogo acontecer!'
 
     else:
         for turno in range(rodadas):
@@ -22,7 +22,7 @@ def todas_as_rodadas(rodadas, jogadores):
             texto += str(f"\nO Jogador N.{pontos.index(np.max(pontos))+1} "
                          f"ganhou {np.max(pontos)} rodadas e é o VENCEDOR!")
         else:
-            texto += str("\nEMPATE! Ninguém venceu.")
+            texto += "\nEMPATE! Ninguém venceu."
     return texto
 
 
