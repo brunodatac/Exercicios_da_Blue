@@ -2,55 +2,56 @@ import random
 import numpy as np
 
 
-def todas_as_rodadas(rodadas, quantidade_de_jogadores):
-    saida = ''
+def todas_as_rodadas(rodadas, jogadores):
+    texto = ''
     if rodadas < 1:
-        saida += str('É necessario ter pelo menos 1 rodada para o jogo acontecer!')
-    elif quantidade_de_jogadores < 2:
-        saida += str('É necessario ter pelo menos 2 jogares competindo para o jogo acontecer!')
+        texto += str('É necessario ter pelo menos 1 rodada para o jogo acontecer!')
+    elif jogadores < 2:
+        texto += str('É necessario ter pelo menos 2 jogares competindo para o jogo acontecer!')
 
     else:
         for turno in range(rodadas):
-            pontuacao_obtida = pontuacao_de_cada_rodada(quantidade_de_jogadores)
-            saida += (f'\nRodada: {turno + 1}\n')
+            resultado_dos_dados = jogada_de_dados(jogadores)
+            texto += f'\nRodada: {turno + 1}\n'
 
-            for jogador in range(len(pontuacao_obtida)):
-                saida += (f'Jogador N.{jogador + 1} fez: {pontuacao_obtida[jogador]}\n')
-            grande_vencedor(pontuacao_obtida)
+            for jogador in range(len(resultado_dos_dados)):
+                texto += f'Jogador N.{jogador + 1} fez: {resultado_dos_dados[jogador]}\n'
+            pontos_por_jogador(resultado_dos_dados)
 
         if pontos.count(np.max(pontos)) == 1:
-            saida += str(f"\nO Jogador N.{pontos.index(np.max(pontos))+1} ganhou {np.max(pontos)} rodadas e é o VENCEDOR!")
+            texto += str(f"\nO Jogador N.{pontos.index(np.max(pontos))+1} "
+                         f"ganhou {np.max(pontos)} rodadas e é o VENCEDOR!")
         else:
-            saida += str("\nEMPATE! Ninguém venceu.")
-    return saida
+            texto += str("\nEMPATE! Ninguém venceu.")
+    return texto
 
 
-def pontuacao_de_cada_rodada(pontuacao_por_jogador):
+def jogada_de_dados(jogadores):
     resultados = []
-    for x in range(pontuacao_por_jogador):
+    for x in range(jogadores):
         dados = random.randint(1, 6)
         resultados.append(dados)
     return resultados
 
 
-def grande_vencedor(pontos_da_rodada):
-    maior_valor = np.max(pontos_da_rodada)
-    y = pontos_da_rodada.count(maior_valor)
-    for x in range(len(pontos_da_rodada)):
-        if pontos_da_rodada[x] == maior_valor and y == 1:
+def pontos_por_jogador(resultado_dos_dados):
+    maior_resultado = np.max(resultado_dos_dados)
+    repeticoes_do_maior_resultado = resultado_dos_dados.count(maior_resultado)
+    for x in range(len(resultado_dos_dados)):
+        if resultado_dos_dados[x] == maior_resultado and repeticoes_do_maior_resultado == 1:
             pontos[x] += 1
     return pontos
 
 
-def pontuacoes(pontuacao):
-    for x in range(pontuacao):
+def lista_de_pontuacao(jogadores):
+    for x in range(jogadores):
         pontos.append(0)
     return pontos
 
 
 pontos = []
 
-rodadas = int(input("Quantas rodadas deseja jogar? "))
-quantidade_de_jogadores = int(input("Quantos jogadores? "))
-pontuacoes(quantidade_de_jogadores)
-print(todas_as_rodadas(rodadas, quantidade_de_jogadores))
+numero_de_rodadas = int(input("Quantas rodadas deseja jogar? "))
+numero_de_jogadores = int(input("Quantos jogadores? "))
+lista_de_pontuacao(numero_de_jogadores)
+print(todas_as_rodadas(numero_de_rodadas, numero_de_jogadores))
