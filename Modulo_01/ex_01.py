@@ -1,7 +1,6 @@
 from math import floor
 
-nome = str(input('Digite um nome: '))
-lista = list(nome)
+nome = list(input('Digite um nome: '))
 corte = floor((len(nome) / 2))
 
-print(lista[0], lista[corte], lista[len(nome) - 1])
+print(nome[0] + nome[corte] + nome[len(nome) - 1])
